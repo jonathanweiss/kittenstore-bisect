@@ -22,6 +22,10 @@ const data = {
       link: '/contact',
     },
     {
+      text: 'Quotes',
+      link: '/quotes',
+    },
+    {
       text: '',
       icon: 'cart',
       link: '/cart',
