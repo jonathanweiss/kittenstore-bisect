@@ -102,10 +102,6 @@ const quotes = [
     person: 'William Ralph Inge (author, Outspoken Essays)',
   },
   {
-    text: '“Curiosity killed the cat.”',
-    person: 'Ben Johnson (playwright, Every Man in His Humour)',
-  },
-  {
     text: '“I used to love dogs until I discovered cats.”',
     person: 'Nafisa Joseph (model)',
   },
