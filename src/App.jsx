@@ -11,6 +11,7 @@ import Cart from './components/Cart';
 import List from './components/List';
 import Detail from './components/Detail';
 import SearchResult from './components/SearchResult';
+import Quotes from './components/Quotes';
 
 const getFirstPartOfPath = (pathname) => {
   const parts = pathname.split('/');
@@ -28,6 +29,7 @@ const App = (props, context) => {
       <Match exactly pattern="/about" component={About} />
       <Match exactly pattern="/contact" component={Contact} />
       <Match exactly pattern="/cart" component={Cart} />
+      <Match exactly pattern="/quotes" component={Quotes} />
 
       <Match exactly pattern="/" render={() => <Homepage amountOfProducts={3} products={cats} />} />
       <Match exactly pattern="/catfood" render={() => <Category desc={categories.catfood.desc} items={categories.catfood.items} />} />

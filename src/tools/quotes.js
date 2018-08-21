@@ -199,3 +199,14 @@ export const getRandomQuote = () => {
   const index = Math.round(Math.random() * (quotes.length - 1));
   return quotes[index];
 };
+
+export const getAllQuotes = () => {
+  const allQuotes = [];
+  for (let i = 0; i <= 46; i++) {
+    let entry = quotes[i];
+
+    allQuotes.push(`${entry.text} – ${entry.person}`);
+  }
+
+  return allQuotes;
+};
