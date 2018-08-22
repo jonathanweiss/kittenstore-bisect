@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import Detail from './Detail';
@@ -40,8 +41,8 @@ const Homepage = (props) => {
 };
 
 Homepage.propTypes = {
-  products: React.PropTypes.array,
-  amountOfProducts: React.PropTypes.number,
+  products: PropTypes.array,
+  amountOfProducts: PropTypes.number,
 };
 
 export default Homepage;

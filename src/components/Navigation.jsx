@@ -1,5 +1,12 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router';
+
+const getFirstPartOfPath = (pathname) => {
+  const parts = pathname.split('/');
+  return (parts.length > 0) ? `/${parts[1]}` : '/';
+};
 
 const renderNavItem = (entry, activePath) => {
   const cssClasses = [
@@ -24,16 +31,16 @@ const startSearch = (textboxRef, transitionTo) => {
   }
 };
 
-const Navigation = (props, context) => {
-  const { activePath } = props;
-  const { transitionTo } = context.router;
+const Navigation = ({ history, location, items }) => {
+  const { push: transitionTo } = history;
+  const activePath = getFirstPartOfPath(location.pathname);
   let textboxRef = null;
 
   /* eslint-disable no-return-assign */
   return (
     <header className="navbar">
       <section className="navbar-section">
-        { props.items.map(entry => renderNavItem(entry, activePath)) }
+        { items.map(entry => renderNavItem(entry, activePath)) }
       </section>
       <section className="navbar-section">
         <div className="input-group input-inline">
@@ -47,17 +54,11 @@ const Navigation = (props, context) => {
 };
 
 Navigation.propTypes = {
-  items: React.PropTypes.array,
-  activePath: React.PropTypes.string,
+  items: PropTypes.array,
 };
 
 Navigation.defaultProps = {
   items: [],
-  activePath: '/',
 };
 
-Navigation.contextTypes = {
-  router: React.PropTypes.object,
-};
-
-export default Navigation;
+export default withRouter(Navigation);

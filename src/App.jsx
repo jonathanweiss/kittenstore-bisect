@@ -1,5 +1,7 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-import { Match, Miss } from 'react-router';
+import { Route, Switch } from 'react-router';
+import queryString from 'query-string';
 
 import Homepage from './components/Homepage';
 import Error404 from './components/Error404';
@@ -13,69 +15,63 @@ import Detail from './components/Detail';
 import SearchResult from './components/SearchResult';
 import Quotes from './components/Quotes';
 
-const getFirstPartOfPath = (pathname) => {
-  const parts = pathname.split('/');
-  return (parts.length > 0) ? `/${parts[1]}` : '/';
-};
-
 const App = (props, context) => {
   const { categories, products, navigationData } = props.data;
   const { cats, catfood } = products;
 
   return (
     <div>
-      <Navigation activePath={getFirstPartOfPath(context.history.location.pathname)} items={navigationData} />
+      <Navigation items={navigationData} />
 
-      <Match exactly pattern="/about" component={About} />
-      <Match exactly pattern="/contact" component={Contact} />
-      <Match exactly pattern="/cart" component={Cart} />
-      <Match exactly pattern="/quotes" component={Quotes} />
+      <Switch>
+        <Route exact path="/about" component={About} />
+        <Route exact path="/contact" component={Contact} />
+        <Route exact path="/cart" component={Cart} />
+        <Route exact path="/quotes" component={Quotes} />
 
-      <Match exactly pattern="/" render={() => <Homepage amountOfProducts={3} products={cats} />} />
-      <Match exactly pattern="/catfood" render={() => <Category desc={categories.catfood.desc} items={categories.catfood.items} />} />
-      <Match exactly pattern="/cats" render={() => <Category desc={categories.cats.desc} items={categories.cats.items} />} />
+        <Route exact path="/" render={() => <Homepage amountOfProducts={3} products={cats} />} />
+        <Route exact path="/catfood" render={() => <Category desc={categories.catfood.desc} items={categories.catfood.items} />} />
+        <Route exact path="/cats" render={() => <Category desc={categories.cats.desc} items={categories.cats.items} />} />
 
-      <Match
-        exactly
-        pattern="/cats/:breed"
-        render={({ params, location }) => {
-          const sortedBy = location.query ? location.query.sortedBy : '';
-          const sortDirection = location.query ? location.query.sortDirection : '';
+        <Route
+          exact
+          path="/cats/:breed"
+          render={({ match, location }) => {
+            const query = queryString.parse(location.search);
+            const sortedBy = query ? query.sortedBy : '';
+            const sortDirection = query ? query.sortDirection : '';
 
-          return (
-            <List
-              slug={params.breed}
-              sortedBy={sortedBy}
-              sortDirection={sortDirection}
-              pathname={location.pathname}
-              data={cats}
-              type="cats"
-            />
-          );
-        }}
-      />
+            return (
+              <List
+                slug={match.params.breed}
+                sortedBy={sortedBy}
+                sortDirection={sortDirection}
+                pathname={location.pathname}
+                data={cats}
+                type="cats"
+              />
+            );
+          }}
+        />
 
-      <Match
-        exactly
-        pattern="/catfood/:brand"
-        render={({ params }) => (<List type="catfood" slug={params.brand} data={catfood} sortedBy="price" sortDirection="up" />)}
-      />
+        <Route
+          exact
+          path="/catfood/:brand"
+          render={({ match }) => (<List type="catfood" slug={match.params.brand} data={catfood} sortedBy="price" sortDirection="up" />)}
+        />
 
-      <Match pattern="/cats/:breed/:catName" render={({ params }) => <Detail slug={params.catName} data={cats} displayRelated />} />
+        <Route path="/cats/:breed/:catName" render={({ match }) => <Detail slug={match.params.catName} data={cats} displayRelated />} />
 
-      <Match pattern="/search/:term" render={({ params }) => <SearchResult term={params.term} data={cats} />} />
+        <Route path="/search/:term" render={({ match }) => <SearchResult term={match.params.term} data={cats} />} />
 
-      <Miss component={Error404} />
+        <Route component={Error404} />
+      </Switch>
     </div>
   );
 };
 
 App.propTypes = {
-  data: React.PropTypes.object,
-};
-
-App.contextTypes = {
-  history: React.PropTypes.object,
+  data: PropTypes.object,
 };
 
 export default App;

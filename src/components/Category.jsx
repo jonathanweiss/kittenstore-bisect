@@ -1,5 +1,6 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom'
 
 const renderProduct = (name, slug, type, provideImageSource) => (
   <div key={slug} className="product--item">
@@ -29,8 +30,8 @@ const Category = (props) => {
 };
 
 Category.propTypes = {
-  desc: React.PropTypes.string.isRequired,
-  items: React.PropTypes.array.isRequired,
+  desc: PropTypes.string.isRequired,
+  items: PropTypes.array.isRequired,
 };
 
 export default Category;
