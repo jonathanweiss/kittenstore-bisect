@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import { Link } from 'react-router-dom'
+import PropTypes from "prop-types";
+import React from "react";
+import { Link } from "react-router-dom";
 
 const renderProduct = (name, slug, type, provideImageSource) => (
   <div key={slug} className="product--item">
@@ -13,17 +13,28 @@ const renderProduct = (name, slug, type, provideImageSource) => (
   </div>
 );
 
-const Category = (props) => {
-  const type = props.desc.toLowerCase().split(' ').join('');
-  const provideImageSource = type === 'cats' ?
-    index => `https://placekitten.com/200/200?image=${index}` :
-    () => 'https://dummyimage.com/200x200/999/000.png';
+const Category = props => {
+  const type = props.desc
+    .toLowerCase()
+    .split(" ")
+    .join("");
+  const provideImageSource =
+    type === "cats"
+      ? index => `https://placekitten.com/200/200?image=${index}`
+      : () => "https://dummyimage.com/200x200/999/000.png";
 
   return (
     <div className="columns">
       <h2>{props.desc}</h2>
       <div className="product--container">
-        { props.items.map((entry, index) => renderProduct(entry.name, entry.slug, type, provideImageSource.bind(this, index))) }
+        {props.items.map((entry, index) =>
+          renderProduct(
+            entry.name,
+            entry.slug,
+            type,
+            provideImageSource.bind(this, index)
+          )
+        )}
       </div>
     </div>
   );
@@ -31,7 +42,7 @@ const Category = (props) => {
 
 Category.propTypes = {
   desc: PropTypes.string.isRequired,
-  items: PropTypes.array.isRequired,
+  items: PropTypes.array.isRequired
 };
 
 export default Category;
