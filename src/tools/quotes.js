@@ -195,7 +195,23 @@ const quotes = [
   },
 ];
 
-export const getRandomQuote = () => {
+const getRandomQuote = () => {
   const index = Math.round(Math.random() * (quotes.length - 1));
   return quotes[index];
+};
+
+const getAllQuotes = () => {
+  const allQuotes = [];
+  for (let i = 0; i <= 46; i++) {
+    let entry = quotes[i];
+
+    allQuotes.push(`${entry.text} – ${entry.person}`);
+  }
+
+  return allQuotes;
+};
+
+module.exports = {
+  getRandomQuote,
+  getAllQuotes,
 };
