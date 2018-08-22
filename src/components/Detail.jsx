@@ -1,5 +1,7 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-import { Link, Match } from 'react-router';
+import { Route } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { getRandomQuote } from '../tools/quotes';
 
@@ -12,7 +14,7 @@ const Detail = (props, context) => {
   const { age, gender, price, weight } = catData;
 
   const renderMiniView = () => {
-    const linkTarget = [...context.history.location.pathname.split('/')];
+    const linkTarget = context.history ? [...context.history.location.pathname.split('/')] : [];
     linkTarget.pop();
     linkTarget.push(catData.slug);
 
@@ -69,8 +71,8 @@ const Detail = (props, context) => {
           </div>
         </div>
       </div>
-      { displayRelated ? <Match
-        pattern="/cats/:breed/:catName" render={() => {
+      { displayRelated ? <Route
+        path="/cats/:breed/:catName" render={() => {
           const relatedProducts = data
             .filter(cat => cat.breed === catData.breed)
             .filter(cat => cat.slug !== catData.slug);
@@ -94,14 +96,14 @@ const Detail = (props, context) => {
 };
 
 Detail.propTypes = {
-  slug: React.PropTypes.string.isRequired,
-  data: React.PropTypes.array.isRequired,
-  displayRelated: React.PropTypes.bool,
-  showDetails: React.PropTypes.bool,
+  slug: PropTypes.string.isRequired,
+  data: PropTypes.array.isRequired,
+  displayRelated: PropTypes.bool,
+  showDetails: PropTypes.bool,
 };
 
 Detail.contextTypes = {
-  history: React.PropTypes.object,
+  history: PropTypes.object,
 };
 
 Detail.defaultProps = {

@@ -1,5 +1,6 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom'
 
 const headers = ['Name', 'Age', 'Weight', 'Gender', 'Price'];
 
@@ -85,12 +86,12 @@ const List = (props) => {
 };
 
 List.propTypes = {
-  slug: React.PropTypes.string.isRequired,
-  type: React.PropTypes.string.isRequired,
-  data: React.PropTypes.array.isRequired,
-  pathname: React.PropTypes.string,
-  sortedBy: React.PropTypes.string,
-  sortDirection: React.PropTypes.string,
+  slug: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  data: PropTypes.array.isRequired,
+  pathname: PropTypes.string,
+  sortedBy: PropTypes.string,
+  sortDirection: PropTypes.string,
 };
 
 export default List;

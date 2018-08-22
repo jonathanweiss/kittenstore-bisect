@@ -1,5 +1,6 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom'
 
 const List = (props) => {
   const term = props.term;
@@ -59,8 +60,8 @@ const List = (props) => {
 };
 
 List.propTypes = {
-  term: React.PropTypes.string.isRequired,
-  data: React.PropTypes.array.isRequired,
+  term: PropTypes.string.isRequired,
+  data: PropTypes.array.isRequired,
 };
 
 export default List;
