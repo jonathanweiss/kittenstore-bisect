@@ -1,22 +1,22 @@
-import PropTypes from "prop-types";
-import React from "react";
-import { Link } from "react-router-dom";
-import { withRouter } from "react-router";
+import PropTypes from 'prop-types';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router';
 
-const getFirstPartOfPath = pathname => {
-  const parts = pathname.split("/");
-  return parts.length > 0 ? `/${parts[1]}` : "/";
+const getFirstPartOfPath = (pathname) => {
+  const parts = pathname.split('/');
+  return parts.length > 0 ? `/${parts[1]}` : '/';
 };
 
 const renderNavItem = (entry, activePath) => {
   const cssClasses = [
-    "btn",
-    "btn-link",
-    activePath === entry.link ? "btn-link-active" : ""
+    'btn',
+    'btn-link',
+    activePath === entry.link ? 'btn-link-active' : '',
   ];
 
   return (
-    <Link to={entry.link} className={cssClasses.join(" ")} key={entry.link}>
+    <Link to={entry.link} className={cssClasses.join(' ')} key={entry.link}>
       {entry.icon ? <i className={`icon icon-${entry.icon}`} /> : null}
       {entry.text}
     </Link>
@@ -64,11 +64,11 @@ const Navigation = ({ history, location, items }) => {
 };
 
 Navigation.propTypes = {
-  items: PropTypes.array
+  items: PropTypes.array,
 };
 
 Navigation.defaultProps = {
-  items: []
+  items: [],
 };
 
 export default withRouter(Navigation);

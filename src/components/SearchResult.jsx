@@ -1,8 +1,8 @@
-import PropTypes from "prop-types";
-import React from "react";
-import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-const List = props => {
+const List = (props) => {
   const term = props.term;
   const cats = props.data.filter(cat => cat.name.indexOf(term) !== -1);
 
@@ -42,7 +42,7 @@ const List = props => {
             </tr>
           </thead>
           <tbody>
-            {cats.map(cat => {
+            {cats.map((cat) => {
               const nameParts = cat.name.split(term);
 
               return (
@@ -69,7 +69,7 @@ const List = props => {
 
 List.propTypes = {
   term: PropTypes.string.isRequired,
-  data: PropTypes.array.isRequired
+  data: PropTypes.array.isRequired,
 };
 
 export default List;

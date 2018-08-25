@@ -1,21 +1,26 @@
-import PropTypes from "prop-types";
-import React from "react";
-import { Route } from "react-router";
-import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
+import React from 'react';
+import { Route } from 'react-router';
+import { Link } from 'react-router-dom';
 
-import { getRandomQuote } from "../tools/quotes";
+import { getRandomQuote } from '../tools/quotes';
 
 const Detail = (props, context) => {
   const quote = getRandomQuote();
-  const { slug, data, showDetails, displayRelated } = props;
+  const {
+    slug, data, showDetails, displayRelated,
+  } = props;
 
   const catIndex = data.findIndex(cat => cat.slug === slug);
   const catData = data[catIndex];
-  const { age, gender, price, weight } = catData;
+  const {
+    age, gender, price, weight,
+  } = catData;
 
   const renderMiniView = () => {
-    const linkTarget = context.history
-      ? [...context.history.location.pathname.split("/")]
+    const { history } = context;
+    const linkTarget = history
+      ? [...history.location.pathname.split('/')]
       : [];
     linkTarget.pop();
     linkTarget.push(catData.slug);
@@ -23,7 +28,7 @@ const Detail = (props, context) => {
     const link = showDetails ? (
       <span>{catData.name}</span>
     ) : (
-      <Link to={linkTarget.join("/")}>{catData.name}</Link>
+      <Link to={linkTarget.join('/')}>{catData.name}</Link>
     );
 
     return (
@@ -35,7 +40,7 @@ const Detail = (props, context) => {
           height="200"
           alt={catData.name}
           src={`https://placekitten.com/200/200?image=${Math.round(
-            Math.random() * 16
+            Math.random() * 16,
           )}`}
         />
       </div>
@@ -53,11 +58,15 @@ const Detail = (props, context) => {
                 <tbody>
                   <tr>
                     <td>Age</td>
-                    <td>{age} weeks</td>
+                    <td>
+                      {age}
+                      {' '}
+weeks
+                    </td>
                   </tr>
                   <tr>
                     <td>Gender</td>
-                    <td>{gender === "male" ? "♂" : " ♀"}</td>
+                    <td>{gender === 'male' ? '♂' : ' ♀'}</td>
                   </tr>
                   <tr>
                     <td>Weight</td>
@@ -71,10 +80,11 @@ const Detail = (props, context) => {
                     <td>
                       <span
                         className={`label ${
-                          price < 100 ? "label-success" : "label-danger"
+                          price < 100 ? 'label-success' : 'label-danger'
                         }`}
                       >
-                        ${price}
+                        $
+                        {price}
                       </span>
                     </td>
                   </tr>
@@ -93,7 +103,11 @@ const Detail = (props, context) => {
             <div className="card-footer">
               <blockquote>
                 <p>{quote.text}</p>
-                <cite>&ndash; {quote.person}</cite>
+                <cite>
+&ndash;
+                  {' '}
+                  {quote.person}
+                </cite>
               </blockquote>
             </div>
           </div>
@@ -146,16 +160,16 @@ Detail.propTypes = {
   slug: PropTypes.string.isRequired,
   data: PropTypes.array.isRequired,
   displayRelated: PropTypes.bool,
-  showDetails: PropTypes.bool
+  showDetails: PropTypes.bool,
 };
 
 Detail.contextTypes = {
-  history: PropTypes.object
+  history: PropTypes.object,
 };
 
 Detail.defaultProps = {
   displayRelated: false,
-  showDetails: true
+  showDetails: true,
 };
 
 export default Detail;

@@ -52,9 +52,9 @@ const quotes = [
     person: 'Charles Dickens (author, Great Expectations)',
   },
   {
-    text: '“You see, wire telegraph is a kind of a very, very long cat. You pull his tail in New York and his head is meowing in ' +
-    'Los Angeles. Do you understand this? And radio operates exactly the same way: you send signals here, they receive them there. ' +
-    'The only difference is that there is no cat.”',
+    text: '“You see, wire telegraph is a kind of a very, very long cat. You pull his tail in New York and his head is meowing in '
+    + 'Los Angeles. Do you understand this? And radio operates exactly the same way: you send signals here, they receive them there. '
+    + 'The only difference is that there is no cat.”',
     person: 'Albert Einstein (theoretical physicist)',
   },
   {
@@ -114,9 +114,9 @@ const quotes = [
     person: 'Leonardo da Vinci (artist, Mona Lisa)',
   },
   {
-    text: '“In its flawless gbreed and superior self-sufficiency I have seen a symbol of the perfect beauty and ' +
-    'bland impersonality of the universe itself, objectively considered, and in its air of silent mystery there ' +
-    'resides for me all the wonder and fascination of the unknown.”',
+    text: '“In its flawless gbreed and superior self-sufficiency I have seen a symbol of the perfect beauty and '
+    + 'bland impersonality of the universe itself, objectively considered, and in its air of silent mystery there '
+    + 'resides for me all the wonder and fascination of the unknown.”',
     person: 'H.P. Lovecraft (author, At the Mountains of Madness)',
   },
   {
@@ -168,8 +168,8 @@ const quotes = [
     person: 'Hippolyte Taine (critic)',
   },
   {
-    text: '“Of all God’s creatures, there is only one that cannot be made slave of the lash. That one is the cat. ' +
-    'If man could be crossed with the cat it would improve the man, but it would deteriorate the cat.”',
+    text: '“Of all God’s creatures, there is only one that cannot be made slave of the lash. That one is the cat. '
+    + 'If man could be crossed with the cat it would improve the man, but it would deteriorate the cat.”',
     person: 'Mark Twain (author, The Adventures of Tom Sawyer)',
   },
   {
@@ -181,8 +181,8 @@ const quotes = [
     person: 'Jules Verne (author, Journey to the Center of the Earth)',
   },
   {
-    text: '“If a dog jumps into your lap it is because he is fond of you; but if a cat does the same thing it is  ' +
-    'because your lap is warmer.”',
+    text: '“If a dog jumps into your lap it is because he is fond of you; but if a cat does the same thing it is  '
+    + 'because your lap is warmer.”',
     person: 'A.N. Whitehead (mathematician and philosopher)',
   },
   {
@@ -198,8 +198,8 @@ const getRandomQuote = () => {
 
 const getAllQuotes = () => {
   const allQuotes = [];
-  for (let i = 0; i <= 46; i++) {
-    let entry = quotes[i];
+  for (let i = 0; i <= 46; i += 1) {
+    const entry = quotes[i];
 
     allQuotes.push(`${entry.text} – ${entry.person}`);
   }

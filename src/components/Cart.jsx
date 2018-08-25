@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Cart = () => (
   <div className="columns">
@@ -9,7 +9,7 @@ const Cart = () => (
         <p className="empty-title">The shopping cart is empty.</p>
         <p className="empty-meta">Click the button to start shopping.</p>
         <Link to="/">
-          <button className="empty-action btn btn-primary">
+          <button type="button" className="empty-action btn btn-primary">
             Browse for products
           </button>
         </Link>

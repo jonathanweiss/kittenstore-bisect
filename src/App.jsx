@@ -1,19 +1,19 @@
-import PropTypes from "prop-types";
-import React from "react";
-import { Route, Switch } from "react-router";
-import queryString from "query-string";
+import PropTypes from 'prop-types';
+import React from 'react';
+import { Route, Switch } from 'react-router';
+import queryString from 'query-string';
 
-import Homepage from "./components/Homepage";
-import Error404 from "./components/Error404";
-import Navigation from "./components/Navigation";
-import About from "./components/About";
-import Contact from "./components/Contact";
-import Category from "./components/Category";
-import Cart from "./components/Cart";
-import List from "./components/List";
-import Detail from "./components/Detail";
-import SearchResult from "./components/SearchResult";
-import Quotes from "./components/Quotes";
+import Homepage from './components/Homepage';
+import Error404 from './components/Error404';
+import Navigation from './components/Navigation';
+import About from './components/About';
+import Contact from './components/Contact';
+import Category from './components/Category';
+import Cart from './components/Cart';
+import List from './components/List';
+import Detail from './components/Detail';
+import SearchResult from './components/SearchResult';
+import Quotes from './components/Quotes';
 
 const App = (props, context) => {
   const { categories, products, navigationData } = props.data;
@@ -60,8 +60,8 @@ const App = (props, context) => {
           path="/cats/:breed"
           render={({ match, location }) => {
             const query = queryString.parse(location.search);
-            const sortedBy = query ? query.sortedBy : "";
-            const sortDirection = query ? query.sortDirection : "";
+            const sortedBy = query ? query.sortedBy : '';
+            const sortDirection = query ? query.sortDirection : '';
 
             return (
               <List
@@ -111,7 +111,7 @@ const App = (props, context) => {
 };
 
 App.propTypes = {
-  data: PropTypes.object
+  data: PropTypes.object,
 };
 
 export default App;

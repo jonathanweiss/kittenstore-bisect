@@ -1,29 +1,29 @@
-import React from "react";
-import { Prompt } from "react-router";
+import React from 'react';
+import { Prompt } from 'react-router';
 
 class Contact extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      modifiedContent: false
+      modifiedContent: false,
     };
   }
 
   markAsChanged(e) {
     this.setState({
-      modifiedContent: e.target.value.length > 0
+      modifiedContent: e.target.value.length > 0,
     });
   }
 
   render() {
+    const { modifiedContent } = this.state;
     return (
       <div className="columns">
         {/* this.state.modifiedContent ? <Prompt message={location => (`Are you sure you want to go to ${location.pathname}`)} /> : null */}
         <Prompt
-          when={this.state.modifiedContent}
-          message={location =>
-            `Are you sure you want to go to ${location.pathname}`
+          when={modifiedContent}
+          message={location => `Are you sure you want to go to ${location.pathname}`
           }
         />
         <div className="column col-12">
